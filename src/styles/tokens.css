@@ -1,0 +1,50 @@
+:root {
+  color-scheme: light dark;
+
+  /* Planes */
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-sunken: #f1f1ee;
+  --line: #e3e2de;
+  --line-strong: #cfcec8;
+
+  /* Text */
+  --text: #1c1b19;
+  --text-muted: #6b6a65;
+  --text-faint: #97968f;
+
+  /* Semantic colours: each has one meaning and no second use */
+  --strong: #0f8b82;   /* strong match, accepted */
+  --weak: #8a8983;     /* weak, observation */
+  --stale: #b07d12;    /* stale, needs confirmation */
+  --none: #c2557a;     /* no match */
+  --agent: #6d5bd0;    /* agent remark */
+  --accent: #1c1b19;
+
+  /* Rhythm */
+  --u: 4px;
+  --radius: 6px;
+  --font: ui-sans-serif, -apple-system, 'Segoe UI', Inter, system-ui, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Mono', Consolas, monospace;
+
+  --t-fast: 90ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131312;
+    --surface: #1b1b1a;
+    --surface-sunken: #232322;
+    --line: #2c2c2a;
+    --line-strong: #3d3d3a;
+    --text: #ececea;
+    --text-muted: #a2a19b;
+    --text-faint: #6f6e69;
+    --strong: #3fb9ae;
+    --weak: #8a8983;
+    --stale: #d8a13c;
+    --none: #dc7c9c;
+    --agent: #9b8cf0;
+    --accent: #ececea;
+  }
+}

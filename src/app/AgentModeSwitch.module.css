@@ -1,0 +1,14 @@
+.bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+  padding: calc(var(--u)) calc(var(--u) * 4);
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 11px;
+}
+
+.item { color: var(--text-faint); padding: 0 calc(var(--u)); }
+.item:hover { color: var(--text-muted); }
+.active { color: var(--text); text-decoration: underline; }

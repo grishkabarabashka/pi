@@ -1,0 +1,102 @@
+.screen { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--u) * 3);
+  padding: calc(var(--u) * 3) calc(var(--u) * 5);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  flex: none;
+}
+
+.title { font-size: 15px; font-weight: 550; }
+
+.back { margin-left: auto; font-size: 12px; color: var(--text-muted); }
+.back:hover { color: var(--text); }
+
+.columns {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.column {
+  padding: calc(var(--u) * 4) calc(var(--u) * 5);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 2);
+  overflow-y: auto;
+}
+
+.column + .column { border-left: 1px solid var(--line); }
+
+/* Slots */
+.slots { display: flex; flex-direction: column; gap: calc(var(--u) * 3); margin-top: calc(var(--u) * 2); }
+
+.slot { display: flex; flex-direction: column; gap: calc(var(--u)); }
+
+.slotHead { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; }
+
+.slot textarea { resize: vertical; line-height: 1.5; }
+
+.slotGap textarea {
+  border-color: var(--stale);
+  background: color-mix(in srgb, var(--stale) 7%, var(--surface));
+}
+
+.closeBox {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 3);
+  margin-top: calc(var(--u) * 3);
+  font-size: 12px;
+}
+
+/* Proposals */
+.proposals { display: flex; flex-direction: column; gap: calc(var(--u) * 3); margin-top: calc(var(--u) * 2); }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u));
+  padding: calc(var(--u) * 3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.card_accepted {
+  border-color: var(--strong);
+  background: color-mix(in srgb, var(--strong) 8%, var(--surface));
+}
+
+.card_rejected { opacity: 0.5; }
+
+.cardHead { font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+.diff {
+  font-family: var(--mono);
+  font-size: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.minus { padding: calc(var(--u)) calc(var(--u) * 2); background: color-mix(in srgb, var(--none) 10%, transparent); }
+.plus { padding: calc(var(--u)) calc(var(--u) * 2); background: color-mix(in srgb, var(--strong) 10%, transparent); }
+
+.cardText { line-height: 1.45; }
+
+.cardActions { display: flex; gap: calc(var(--u) * 1.5); margin-top: calc(var(--u)); }
+
+.footNote { margin-top: auto; padding-top: calc(var(--u) * 4); }
+
+@media (max-width: 980px) {
+  .columns { grid-template-columns: 1fr; overflow-y: auto; }
+  .column + .column { border-left: none; border-top: 1px solid var(--line); }
+}
+
+.targetLink { border-bottom: 1px solid var(--line-strong); padding: 0; }
+.targetLink:hover { border-bottom-color: var(--text); }

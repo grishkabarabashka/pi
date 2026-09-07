@@ -1,0 +1,47 @@
+.sources { flex: 1; overflow-y: auto; }
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: calc(var(--u) * 2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  transition: opacity var(--t-fast);
+}
+
+/* Marked as not matching: it stays in place so the person sees what they discarded. */
+.articleDiscarded { opacity: 0.45; }
+
+.articleTitle {
+  border-bottom: none;
+  line-height: 1.35;
+  text-align: left;
+  padding: 0;
+}
+
+.articleTitle:hover { text-decoration: underline; }
+
+.freshness { font-size: 11px; }
+
+.articleFoot {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--u) * 2);
+  margin-top: calc(var(--u));
+}
+
+.notApplicable {
+  font-size: 11px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line);
+  padding: 0;
+}
+
+.notApplicable:hover { color: var(--text); border-bottom-color: var(--text-muted); }
+
+/* The ServiceNow link stays, but on a second line (D16). */
+.snLink { font-size: 11px; border-bottom-color: var(--line); }
+
+.similar { font-size: 12px; line-height: 1.4; }

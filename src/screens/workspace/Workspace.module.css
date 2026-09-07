@@ -1,0 +1,165 @@
+.layout { display: flex; flex: 1; min-width: 0; overflow: hidden; }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.side {
+  width: 340px;
+  flex: none;
+  border-left: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.head {
+  padding: calc(var(--u) * 3) calc(var(--u) * 5);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.5);
+  flex: none;
+}
+
+.headTop { display: flex; align-items: baseline; gap: calc(var(--u) * 3); }
+
+.title { font-size: 15px; font-weight: 550; line-height: 1.3; }
+
+.snLink { margin-left: auto; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+
+.origin { font-size: 12px; }
+
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * 1.5); }
+
+.sep { width: 1px; height: 14px; background: var(--line-strong); margin: 0 calc(var(--u) * 1.5); }
+
+/* Feed */
+.feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: calc(var(--u) * 4) calc(var(--u) * 5);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 5);
+}
+
+.block { display: flex; flex-direction: column; gap: calc(var(--u) * 1.5); }
+
+.change { font-size: 12px; }
+
+.steps { display: flex; flex-direction: column; gap: calc(var(--u)); margin-top: calc(var(--u)); }
+
+.step {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--u) * 2);
+  text-align: left;
+  padding: calc(var(--u) * 1.5) calc(var(--u) * 2);
+  border-left: 2px solid var(--line-strong);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--surface);
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+.step:hover { background: var(--surface-sunken); }
+
+.stepMark { font-family: var(--mono); font-size: 11px; color: var(--text-faint); width: 12px; }
+
+.stepText { flex: 1; }
+
+.stepNote { font-size: 11px; color: var(--stale); }
+
+.step_done { border-left-color: var(--strong); }
+.step_done .stepMark { color: var(--strong); }
+
+.step_failed { border-left-color: var(--stale); }
+.step_failed .stepMark { color: var(--stale); }
+.step_failed .stepText { text-decoration: line-through; color: var(--text-muted); }
+
+/* Events */
+.events { display: flex; flex-direction: column; gap: calc(var(--u) * 3); }
+
+.event {
+  border-left: 2px solid var(--line-strong);
+  padding-left: calc(var(--u) * 3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eventAgent { border-left-color: var(--agent); }
+
+.eventMeta { display: flex; gap: calc(var(--u) * 2); font-size: 11px; }
+
+.eventText { white-space: pre-wrap; }
+
+.eventFoot { font-size: 11px; }
+
+.linkBtn { font-size: 11px; color: var(--text-muted); }
+.linkBtn:hover { color: var(--text); text-decoration: underline; }
+
+.eventActions { display: flex; gap: calc(var(--u) * 2); margin-top: calc(var(--u)); }
+
+/* Input */
+.composer {
+  border-top: 1px solid var(--line);
+  padding: calc(var(--u) * 3) calc(var(--u) * 5);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.5);
+  flex: none;
+}
+
+.input { resize: none; line-height: 1.5; }
+
+.main { min-width: 0; }
+
+@media (max-width: 1200px) {
+  .side { width: 292px; }
+  .head, .feed, .composer { padding-inline: calc(var(--u) * 3); }
+}
+
+@media (max-width: 980px) {
+  .side { width: 260px; }
+}
+
+/* State and pushing into the ticket. Nothing here is disabled while a write is in flight. */
+.stateRow {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 2);
+  margin-top: calc(var(--u) * 2);
+}
+
+/* Evidence: monospaced, clipped, never rewritten into a proposal by itself. */
+.evidence { display: flex; flex-direction: column; gap: calc(var(--u)); }
+
+.evidenceClipped, .evidenceFull {
+  margin: 0;
+  padding: calc(var(--u) * 1.5);
+  background: var(--surface-sunken);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.evidenceClipped {
+  max-height: calc(1.45em * 5);
+  overflow-y: hidden;
+}
+
+/* The short path. Appears only for a recurring alert with a matched course (D17). */
+.shortPath {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--u) * 3);
+  margin: 0 calc(var(--u) * 4);
+  padding: calc(var(--u) * 2) calc(var(--u) * 3);
+  border: 1px solid var(--strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
