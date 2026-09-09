@@ -1,5 +1,6 @@
 .basket {
   flex: none;
+  background: var(--surface);
   border-top: 1px solid var(--line);
   padding: calc(var(--u) * 3) calc(var(--u) * 4) calc(var(--u) * 4);
   display: flex;
@@ -18,7 +19,13 @@
   font-size: 12px;
 }
 
-.item { display: flex; flex-direction: column; gap: 1px; }
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: calc(var(--u) * 2);
+  border-left: 2px solid var(--kind-tone, var(--line-strong));
+}
 
 .kind { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
 

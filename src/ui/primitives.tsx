@@ -50,11 +50,18 @@ export function Button({
   );
 }
 
-export function Panel({ title, aside, children }: { title: string; aside?: ReactNode; children: ReactNode }) {
+export function Panel({
+  title, aside, tone, children,
+}: {
+  title: string; aside?: ReactNode; tone?: string; children: ReactNode;
+}) {
   return (
     <section className={s.panel}>
       <header className={s.panelHead}>
-        <span className="caps">{title}</span>
+        <span className={s.panelTitle}>
+          {tone && <span className={s.panelDot} style={{ background: tone }} />}
+          <span className="caps">{title}</span>
+        </span>
         {aside}
       </header>
       {children}
@@ -106,5 +113,5 @@ export function age(iso: string): string {
 }
 
 export function clock(iso: string): string {
-  return new Date(iso).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  return new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 }

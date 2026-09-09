@@ -4,7 +4,8 @@ import { KnowledgeDot, age } from '@/ui/primitives';
 import { currentUser, tags as allTags } from '~fixtures/team';
 import s from './TicketList.module.css';
 
-const isToday = (iso: string) => new Date(iso).toDateString() === new Date().toDateString();
+const isToday = (iso?: string) =>
+  iso != null && new Date(iso).toDateString() === new Date().toDateString();
 
 export function TicketList() {
   const tickets = useApp((st) => st.tickets);
@@ -14,7 +15,8 @@ export function TicketList() {
   const mine = tickets.filter((t) => t.assignee === currentUser.id);
   const work = mine.filter((t) => t.state === 'work');
   const wait = mine.filter((t) => t.state === 'wait');
-  const closed = mine.filter((t) => t.state === 'closed' && isToday(t.openedAt));
+  // Closed today means closed today — the opening time is a different fact.
+  const closed = mine.filter((t) => t.state === 'closed' && isToday(t.closedAt));
   const queue = tickets.filter((t) => t.state === 'queue');
 
   return (

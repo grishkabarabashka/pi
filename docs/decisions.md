@@ -169,3 +169,43 @@ On "Accept and close" the ticket is closed and the resolution notes are written 
 **Consequence.** A conflict is discovered after the fact. That is acceptable: the proposal is preserved and rebuilt against the new body, and nothing is silently overwritten (I1).
 
 **Rejected.** Publishing before closing with a check for conflicts — it turns every closure into a possible wait and reintroduces a blocking dialogue.
+
+---
+
+## D19. The documentation is readable from inside the mockup
+
+A fourth view in the header, **Concept**, renders the files in `docs/` and links out to the
+diagrams page at `/docs/canvas/`. It is a shelf, not a fifth product screen: nothing on it writes
+anywhere, and it takes nothing away from the work screen.
+
+**Why.** The mockup is shown to people who have to judge the idea, not only the screens. Sending
+them to a repository to read the reasoning loses most of them; the documents are the argument, and
+the argument should be one press from the thing it argues for.
+
+**Relation to D15.** D15 fixes three product views. This one is deliberately outside that count and
+is marked as such in the code: when the interface goes to a pilot, the shelf is the first thing that
+comes out.
+
+**Cost.** `marked` and `mermaid` as dependencies. Mermaid is loaded lazily, only when a document
+containing a diagram is opened.
+
+---
+
+## D20. Every action says which part of the loop it feeds
+
+A strip in the header names the link of the loop the screen is on — hint, signals, basket, review,
+master, rebuild — and the controls that raise or dispatch something carry a one-line label saying
+where the press lands: "every mark is a signal → the basket", "the record is written first,
+publication follows", "the observations section, apart from the canon".
+
+**Why.** The loop is the whole idea, and it was invisible in the interface: a person could press
+every control on the screen without ever learning that a step mark is what keeps the knowledge base
+alive. A person who can see that presses differently — and this is the cheapest possible way to say
+it, because the label sits on the control that does it rather than in an onboarding tour.
+
+**Constraint.** These are annotations, not instructions or interruptions: no modal, no toast,
+nothing that appears over the work, and no number that cannot be checked (I7). A label states the
+destination the code actually dispatches to, so it cannot drift into decoration.
+
+**Rejected.** A tour or a help overlay — it is read once, by nobody. A permanent diagram in the
+interface — the loop drawn is a document, and it lives at `/docs/canvas/`.

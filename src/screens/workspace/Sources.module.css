@@ -6,8 +6,9 @@
   gap: 2px;
   padding: calc(var(--u) * 2);
   border: 1px solid var(--line);
+  border-left: 2px solid var(--tone, var(--line-strong));
   border-radius: var(--radius);
-  background: var(--surface-sunken);
+  background: var(--surface);
   transition: opacity var(--t-fast);
 }
 

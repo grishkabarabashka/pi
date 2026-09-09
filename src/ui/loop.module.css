@@ -1,0 +1,82 @@
+/* The loop strip and the per-action badges. Colours carry the same meaning as everywhere
+   else: teal is confirmed knowledge, violet is ours, grey is not yet weighed, amber waits
+   for a person. */
+
+.rail {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 calc(var(--u) * 2);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  height: 100%;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u));
+  color: var(--text-faint);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.thread {
+  width: calc(var(--u) * 2.5);
+  height: 1px;
+  background: var(--line-strong);
+  margin: 0 calc(var(--u));
+}
+
+.node {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  flex: none;
+}
+
+.name { display: none; }
+
+/* Only the current link is named: there is nothing to read on the rest. */
+.link[data-on] { color: var(--text); }
+.link[data-on] .name { display: inline; }
+.link[data-on] .node { box-shadow: 0 0 0 3px var(--stage-tint); }
+
+.link[data-stage='hint'] { --stage: var(--agent); --stage-tint: var(--tint-agent); }
+.link[data-stage='signal'] { --stage: var(--strong); --stage-tint: var(--tint-strong); }
+.link[data-stage='basket'] { --stage: var(--weak); --stage-tint: var(--tint-weak); }
+.link[data-stage='review'] { --stage: var(--stale); --stage-tint: var(--tint-stale); }
+.link[data-stage='master'] { --stage: var(--strong); --stage-tint: var(--tint-strong); }
+.link[data-stage='rebuild'] { --stage: var(--agent); --stage-tint: var(--tint-agent); }
+.link[data-on] .node { background: var(--stage); }
+
+@media (max-width: 1100px) {
+  .rail { display: none; }
+}
+
+/* ---- the badge on an action ---- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.25);
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.badge .node {
+  width: 5px;
+  height: 5px;
+  background: var(--stage);
+}
+
+.badge[data-stage='hint'] { --stage: var(--agent); }
+.badge[data-stage='signal'] { --stage: var(--strong); }
+.badge[data-stage='basket'] { --stage: var(--weak); }
+.badge[data-stage='review'] { --stage: var(--stale); }
+.badge[data-stage='master'] { --stage: var(--strong); }
+.badge[data-stage='rebuild'] { --stage: var(--agent); }

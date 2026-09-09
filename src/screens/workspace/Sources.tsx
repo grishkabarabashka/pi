@@ -2,6 +2,7 @@ import { useApp } from '@/store/app';
 import { adapter } from '@/adapters/servicenow';
 import type { Ticket } from '@/domain/types';
 import { Empty, Panel, freshnessColor, freshnessLabel } from '@/ui/primitives';
+import { LoopBadge } from '@/ui/loop';
 import s from './Sources.module.css';
 
 /**
@@ -24,7 +25,11 @@ export function Sources({ ticket }: { ticket: Ticket }) {
   );
 
   const articlesPanel = (
-    <Panel title="Articles">
+    <Panel
+      title="Articles"
+      tone="var(--strong)"
+      aside={<LoopBadge stage="hint">the loop, come back</LoopBadge>}
+    >
       {state === 'loading' && <Empty>the hint is being assembled</Empty>}
       {state === 'failed' && <Empty>the hint is unavailable</Empty>}
       {state === 'ready' && articles.length === 0 && <Empty>no matches</Empty>}
@@ -32,6 +37,7 @@ export function Sources({ ticket }: { ticket: Ticket }) {
         <article
           key={a.articleId}
           className={`${s.article} ${isDiscarded(a.articleId) ? s.articleDiscarded : ''}`}
+          style={{ ['--tone' as string]: freshnessColor(a.freshness) }}
         >
           {/* The projection first: freshness, observations and history live there (D16). */}
           <button type="button" className={s.articleTitle} onClick={() => openPage(a.articleId, ticket.id)}>
@@ -48,7 +54,7 @@ export function Sources({ ticket }: { ticket: Ticket }) {
               type="button"
               className={s.notApplicable}
               onClick={() => toggleNotApplicable(ticket.id, a)}
-              title="Corrects the matching, does not change the article text"
+              title="Corrects the matching, not the content: it updates telemetry and never touches the article text"
             >
               {isDiscarded(a.articleId) ? 'bring it back' : 'not about our case'}
             </button>
@@ -69,7 +75,7 @@ export function Sources({ ticket }: { ticket: Ticket }) {
   return (
     <div className={s.sources}>
       {ticket.origin === 'alert' && (
-        <Panel title="Past occurrences">
+        <Panel title="Past occurrences" tone="var(--agent)">
           {state === 'loading' && <Empty>the history is being assembled</Empty>}
           {state !== 'loading' && !history && <Empty>the occurrence history is empty</Empty>}
           {history && (
@@ -84,7 +90,10 @@ export function Sources({ ticket }: { ticket: Ticket }) {
 
       {articlesPanel}
 
-      <Panel title={ticket.origin === 'alert' ? 'Similar tickets' : 'Similar requests'}>
+      <Panel
+        title={ticket.origin === 'alert' ? 'Similar tickets' : 'Similar requests'}
+        tone="var(--weak)"
+      >
         {state === 'ready' && similar.length === 0 && <Empty>nothing similar found</Empty>}
         {similar.map((t) => (
           <div key={t.ticketId} className={s.similar}>

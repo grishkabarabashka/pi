@@ -73,7 +73,6 @@ export function AttentionStrip() {
                       <span className="faint">{age(t.openedAt)}</span>
                     </span>
                     <span className={s.cardTitle}>{t.title}</span>
-                    {b.emphasis === 'swarm' && <span className="faint">3 participants</span>}
                   </button>
                 ))}
               </div>

@@ -6,7 +6,7 @@
   width: 340px;
   flex: none;
   border-left: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--zone-knowledge);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -71,10 +71,10 @@
 
 .stepNote { font-size: 11px; color: var(--stale); }
 
-.step_done { border-left-color: var(--strong); }
+.step_done { border-left-color: var(--strong); background: var(--tint-strong); }
 .step_done .stepMark { color: var(--strong); }
 
-.step_failed { border-left-color: var(--stale); }
+.step_failed { border-left-color: var(--stale); background: var(--tint-stale); }
 .step_failed .stepMark { color: var(--stale); }
 .step_failed .stepText { text-decoration: line-through; color: var(--text-muted); }
 
@@ -89,7 +89,11 @@
   gap: 2px;
 }
 
+/* The kind of an event reads from the rail alone, before the text is read. */
 .eventAgent { border-left-color: var(--agent); }
+.eventQuestion { border-left-color: var(--focus); }
+.eventEvidence { border-left-color: var(--weak); }
+.eventState { border-left-color: var(--line); }
 
 .eventMeta { display: flex; gap: calc(var(--u) * 2); font-size: 11px; }
 
@@ -161,5 +165,10 @@
   padding: calc(var(--u) * 2) calc(var(--u) * 3);
   border: 1px solid var(--strong);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--tint-strong);
 }
+
+.shortPathText { display: flex; flex-direction: column; gap: 2px; }
+
+/* A section heading with its place in the loop stated beside it. */
+.blockHead { display: flex; align-items: baseline; justify-content: space-between; gap: calc(var(--u) * 3); }

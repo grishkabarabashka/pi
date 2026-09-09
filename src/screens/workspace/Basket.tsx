@@ -1,5 +1,6 @@
 import { useApp } from '@/store/app';
 import { Button, kindColor, kindLabel } from '@/ui/primitives';
+import { LoopBadge } from '@/ui/loop';
 import s from './Basket.module.css';
 
 /** Visible at all times in `work` mode; it does not appear out of nowhere at closure. */
@@ -14,13 +15,14 @@ export function Basket({ ticketId }: { ticketId: string }) {
         <span className="caps">Basket</span>
         <span className="faint mono">{proposals.length}</span>
       </header>
+      <LoopBadge stage="basket">what the work has raised so far</LoopBadge>
 
       <ul className={s.items}>
         {proposals.length === 0 && <li className="faint">Empty so far</li>}
         {proposals.map((p) => {
           const pageId = p.sourceArticleId ?? p.anchor?.articleSysId;
           return (
-            <li key={p.id} className={s.item}>
+            <li key={p.id} className={s.item} style={{ ['--kind-tone' as string]: kindColor[p.kind] }}>
               <span className={s.kind} style={{ color: kindColor[p.kind] }}>{kindLabel[p.kind]}</span>
               <span className={s.text}>{p.text}</span>
               {pageId && (
@@ -38,6 +40,7 @@ export function Basket({ ticketId }: { ticketId: string }) {
       </ul>
 
       <Button variant="solid" onClick={() => openClosure(ticketId)}>Go to closure</Button>
+      <LoopBadge stage="review">review it, then the record and the publication</LoopBadge>
     </div>
   );
 }

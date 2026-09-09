@@ -21,6 +21,7 @@ export interface Ticket {
   assignee?: string;
   state: TicketState;
   openedAt: string;
+  closedAt?: string;
   bucket?: BucketId;
   tags: TagId[];
   knowledgeMatch: KnowledgeMatch;

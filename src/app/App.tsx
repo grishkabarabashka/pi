@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useApp } from '@/store/app';
 import { AttentionStrip } from '@/screens/main/AttentionStrip';
 import { TicketList } from '@/screens/main/TicketList';
@@ -10,6 +10,9 @@ import { Knowledge } from '@/screens/knowledge/Knowledge';
 import { AgentModeSwitch } from './AgentModeSwitch';
 import { Header } from './Header';
 import s from './App.module.css';
+
+/** The documentation shelf is not part of the shift: it loads only when someone opens it (D19). */
+const Docs = lazy(() => import('@/screens/docs/Docs'));
 
 export function App() {
   const load = useApp((st) => st.loadTickets);
@@ -23,6 +26,11 @@ export function App() {
       {view === 'work' && <WorkView />}
       {view === 'queue' && <Queue />}
       {view === 'knowledge' && <Knowledge />}
+      {view === 'docs' && (
+        <Suspense fallback={<div className={s.blank}><p className="muted">Opening the documents…</p></div>}>
+          <Docs />
+        </Suspense>
+      )}
       <AgentModeSwitch />
     </div>
   );

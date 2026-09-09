@@ -2,6 +2,7 @@ import { useApp } from '@/store/app';
 import type { PublicationOutcome, Ticket } from '@/domain/types';
 import { isGap } from '@/domain/types';
 import { Button, kindLabel } from '@/ui/primitives';
+import { LoopBadge } from '@/ui/loop';
 import s from './Closure.module.css';
 import a from './AfterClosure.module.css';
 
@@ -35,6 +36,9 @@ export function AfterClosure({ ticket }: { ticket: Ticket }) {
       <header className={s.head}>
         <span className="mono">{ticket.id}</span>
         <h1 className={s.title}>Written to ServiceNow</h1>
+        <LoopBadge stage="rebuild">
+          from here the pipeline rebuilds the projection — the next ticket gets it as the hint
+        </LoopBadge>
       </header>
 
       <div className={a.body}>

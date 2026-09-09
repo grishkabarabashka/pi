@@ -32,13 +32,14 @@ npm run dev
 | `src/adapters/telemetry/` | Application counters, confirmations and not-applicable marks. Never reaches ServiceNow (I6) |
 | `src/agent/agent.ts` | All model calls. Modes `normal` / `slow` / `down` for checking I2 |
 | `src/store/app.ts` | The Zustand store. User actions change state synchronously, the model draws in later |
-| `src/app/` | The header and the switching between the three views |
+| `src/app/` | The header, the loop strip, and the switching between views |
 | `src/screens/main/` | The ticket list, the attention strip |
 | `src/screens/workspace/` | The header, the feed, the steps, the input, the sources, the basket |
 | `src/screens/closure/` | The slots, the proposals, the after-closure screen |
 | `src/screens/queue/` | The team's general queue |
 | `src/screens/knowledge/` | The article projections |
-| `src/ui/` | Shared elements and the freshness wording |
+| `src/screens/docs/` | The documentation shelf: the files from `docs/` rendered in the app, and the link to the diagrams (D19) |
+| `src/ui/` | Shared elements, the freshness wording, and the loop strip that names where an action lands (D20) |
 | `fixtures/` | The scenarios from `docs/servicenow.md` |
 
 ## How the invariants are checked
@@ -75,8 +76,8 @@ live in the store and in `adapters/telemetry`; nothing is written into ServiceNo
 - `LiveAdapter` — after Q1–Q5
 - Editing from the knowledge page (the anchor, the hash check and the rebuild are in the contract;
   the editing screen is not built) — fourth wave
-- Promotion of an observation into the canon by the number of confirmations: `promotionLeft` is
-  shown, but the accumulation of confirmations across tickets is not implemented
+- Promotion of an observation into the canon: `promotionLeft` states the distance to the canon
+  (one more independent case, D7), but confirmations are not yet accumulated across tickets
 - Search across knowledge, the neighbours graph, the owner dashboard, the slow loop — fifth wave
 - The weight of confirmations from `agent.md` ("Protection against formal confirmation") is not
   computed yet

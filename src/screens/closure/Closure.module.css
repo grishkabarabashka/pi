@@ -30,7 +30,11 @@
   overflow-y: auto;
 }
 
-.column + .column { border-left: 1px solid var(--line); }
+.column { background: var(--surface); }
+
+/* The right-hand column is knowledge for other people. It gets the knowledge plane, so the
+   split is visible before either heading is read. */
+.column + .column { border-left: 1px solid var(--line); background: var(--zone-knowledge); }
 
 /* Slots */
 .slots { display: flex; flex-direction: column; gap: calc(var(--u) * 3); margin-top: calc(var(--u) * 2); }
@@ -46,9 +50,12 @@
   background: color-mix(in srgb, var(--stale) 7%, var(--surface));
 }
 
+.columnHead { display: flex; align-items: baseline; justify-content: space-between; gap: calc(var(--u) * 3); }
+
 .closeBox {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: calc(var(--u) * 3);
   margin-top: calc(var(--u) * 3);
   font-size: 12px;
@@ -63,12 +70,23 @@
   gap: calc(var(--u));
   padding: calc(var(--u) * 3);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--kind-tone, var(--line-strong));
   border-radius: var(--radius);
   background: var(--surface);
 }
 
+/* Where this proposal lands if it is accepted. Stated before the press, not after. */
+.dest {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.25);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
 .card_accepted {
   border-color: var(--strong);
+  border-left-color: var(--strong);
   background: color-mix(in srgb, var(--strong) 8%, var(--surface));
 }
 
@@ -100,3 +118,5 @@
 
 .targetLink { border-bottom: 1px solid var(--line-strong); padding: 0; }
 .targetLink:hover { border-bottom-color: var(--text); }
+
+.destDot { width: 6px; height: 6px; border-radius: 50%; flex: none; }

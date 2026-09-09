@@ -18,8 +18,23 @@
   --weak: #8a8983;     /* weak, observation */
   --stale: #b07d12;    /* stale, needs confirmation */
   --none: #c2557a;     /* no match */
-  --agent: #6d5bd0;    /* agent remark */
+  --agent: #6d5bd0;    /* agent remark, and knowledge coming back from the projection */
   --accent: #1c1b19;
+  --focus: #2f6bf0;    /* chrome only: the row you are on, the active view. Says nothing about knowledge */
+
+  /* Tints of the same six meanings, for rails and backgrounds. A tint never appears
+     without the colour it is a tint of — otherwise it is decoration. */
+  --tint-strong: color-mix(in srgb, var(--strong) 10%, transparent);
+  --tint-weak: color-mix(in srgb, var(--weak) 10%, transparent);
+  --tint-stale: color-mix(in srgb, var(--stale) 12%, transparent);
+  --tint-none: color-mix(in srgb, var(--none) 10%, transparent);
+  --tint-agent: color-mix(in srgb, var(--agent) 12%, transparent);
+
+  /* Zones of the work screen. Three planes, so the eye can tell them apart without
+     reading a heading: my tickets, the work itself, knowledge. */
+  --zone-tickets: color-mix(in srgb, var(--agent) 3%, var(--surface-sunken));
+  --zone-work: var(--bg);
+  --zone-knowledge: color-mix(in srgb, var(--strong) 4%, var(--surface));
 
   /* Rhythm */
   --u: 4px;
@@ -46,5 +61,6 @@
     --none: #dc7c9c;
     --agent: #9b8cf0;
     --accent: #ececea;
+    --focus: #6f9dff;
   }
 }

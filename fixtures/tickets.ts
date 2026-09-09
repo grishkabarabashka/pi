@@ -35,7 +35,7 @@ export const tickets: Ticket[] = [
     description: 'The nightly export finished with a timeout.',
     application: 'Data Export', ciId: 'ci_export', priority: 'P3',
     origin: 'alert', alertSignature: 'export.timeout',
-    assignee: 'me', state: 'closed', openedAt: ago(640),
+    assignee: 'me', state: 'closed', openedAt: ago(640), closedAt: ago(120),
     tags: [], knowledgeMatch: 'stale',
   },
   {

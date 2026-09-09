@@ -9,6 +9,9 @@ Four frames of the machine described in [`../concept.md`](../concept.md):
 
 ## Opening it
 
+The mockup links here: the header carries a **Diagrams ↗** link, and the **Concept** view opens
+with the same page at the top of the document list (D19).
+
 ```sh
 npm run dev     # then http://localhost:5173/docs/canvas/
 npm run build   # emits dist/docs/canvas/index.html alongside the application

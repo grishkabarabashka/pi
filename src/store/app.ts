@@ -23,7 +23,7 @@ const ALL_STEPS = 'all-steps';
 export type Mode = 'work' | 'closing' | 'closed';
 
 /** A top-level view. The work screen is the home of the shift; the others return to it (D15). */
-export type View = 'work' | 'queue' | 'knowledge';
+export type View = 'work' | 'queue' | 'knowledge' | 'docs';
 
 export interface QueueFilters {
   application: string | null;
@@ -52,6 +52,8 @@ interface State {
   pageIndex: KnowledgePageSummary[];
   pageIndexState: 'idle' | 'loading' | 'ready' | 'failed';
   queueFilters: QueueFilters;
+  /** The document open on the shelf; it survives going back to the work screen (D19). */
+  openedDocPath: string | null;
   /** Unsent input field text per ticket. Going to another view does not lose it. */
   drafts: Record<string, string>;
 
@@ -81,6 +83,7 @@ interface State {
   openPage: (pageId: string, fromTicketId?: string) => void;
   loadPageIndex: () => void;
   setQueueFilters: (patch: Partial<QueueFilters>) => void;
+  openDoc: (path?: string) => void;
   setDraft: (ticketId: string, text: string) => void;
 
   setBucket: (ticketId: string, bucket: BucketId) => void;
@@ -122,6 +125,7 @@ export const useApp = create<State>((set, get) => ({
   pageIndex: [],
   pageIndexState: 'idle',
   queueFilters: { ...emptyQueueFilters },
+  openedDocPath: null,
   drafts: {},
   trail: {},
   steps: {},
@@ -238,6 +242,10 @@ export const useApp = create<State>((set, get) => ({
 
   setQueueFilters(patch) {
     set((st) => ({ queueFilters: { ...st.queueFilters, ...patch } }));
+  },
+
+  openDoc(path = '/docs/concept.md') {
+    set({ view: 'docs', openedDocPath: path });
   },
 
   setDraft(ticketId, text) {
@@ -539,7 +547,7 @@ export const useApp = create<State>((set, get) => ({
     set((st) => ({
       mode: 'closed',
       closureResult: { ...st.closureResult, [ticketId]: pkg },
-      tickets: st.tickets.map((t) => (t.id === ticketId ? { ...t, state: 'closed' } : t)),
+      tickets: st.tickets.map((t) => (t.id === ticketId ? { ...t, state: 'closed', closedAt: now() } : t)),
       publications: {
         ...st.publications,
         [ticketId]: accepted.map((p) => ({
@@ -589,6 +597,11 @@ function patchNote(set: Setter, ticketId: string, eventId: string, patch: Partia
 }
 
 function addProposal(set: Setter, proposal: Proposal) {
+  // How many confirmations remain until promotion into the canon. The threshold is two
+  // engineers on two tickets, or one owner (D7), so a fresh weak proposal is one case short.
+  if (proposal.strength === 'weak' && proposal.kind !== 'not_applicable' && proposal.promotionLeft == null) {
+    proposal = { ...proposal, promotionLeft: 1 };
+  }
   set((st) => ({
     proposals: { ...st.proposals, [proposal.ticketId]: [...(st.proposals[proposal.ticketId] ?? []), proposal] },
   }));
@@ -623,6 +636,7 @@ function restrengthenCorrections(set: Setter, get: Getter, ticketId: string) {
           ? {
             ...p,
             strength: 'strong' as const,
+            promotionLeft: undefined,
             basis: 'a "did not help" step mark and the evidence attached on this ticket',
           }
           : p,
@@ -788,6 +802,9 @@ export function shortPathOffer(st: State, ticketId: string): { text: string } | 
   const history = st.suggestions[ticketId]?.alertHistory;
   const steps = st.steps[ticketId] ?? [];
   if (!ticket?.alertSignature || !history) return null;
+  // A history is "stable" only when the same resolution repeated often enough to speak for
+  // itself: three cases or more (domain.md on commonCount, the basis table in agent.md).
+  if (history.commonCount < 3 || history.commonCount * 2 <= history.occurrences) return null;
   if (steps.length === 0 || !steps.every((s) => s.state === 'done')) return null;
   return {
     text: `${history.commonResolution}. The course of the resolution matched on ${history.commonCount} of ${history.occurrences} occurrences.`,

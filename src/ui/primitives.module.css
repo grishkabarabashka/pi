@@ -60,6 +60,12 @@ button.chip:hover { border-color: var(--line-strong); color: var(--text); }
   gap: calc(var(--u) * 2);
 }
 
+/* The three source sections carry different authority and are never merged; the tone says
+   which one you are looking at before the heading is read. */
+.panelTitle { display: flex; align-items: center; gap: calc(var(--u) * 1.5); }
+
+.panelDot { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+
 .empty {
   color: var(--text-faint);
   font-size: 12px;

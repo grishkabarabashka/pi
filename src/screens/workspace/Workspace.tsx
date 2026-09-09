@@ -3,6 +3,7 @@ import { useApp, shortPathOffer } from '@/store/app';
 import { adapter } from '@/adapters/servicenow';
 import type { StepInstance, Ticket, TrailEvent } from '@/domain/types';
 import { Button, Chip, age, clock } from '@/ui/primitives';
+import { LoopBadge } from '@/ui/loop';
 import { buckets, tags as allTags } from '~fixtures/team';
 import { Sources } from './Sources';
 import { Basket } from './Basket';
@@ -103,6 +104,7 @@ function StateControls({ ticket }: { ticket: Ticket }) {
         <Button onClick={() => waitForReply(ticket.id)}>Waiting for a reply</Button>
       )}
       <Button onClick={() => push(ticket.id)}>Push into the ticket</Button>
+      <LoopBadge stage="master">a consolidated note into the ticket record</LoopBadge>
       <span className="faint">
         {pushState === 'sending' && 'sending…'}
         {pushState === 'failed' && 'the note did not reach ServiceNow, nothing is lost — try again'}
@@ -161,8 +163,13 @@ function Steps({ ticketId, steps }: { ticketId: string; steps: StepInstance[] })
   const cycle = useApp((st) => st.cycleStep);
   return (
     <section className={s.block}>
-      <h2 className="caps">Suggested steps</h2>
-      <p className="faint">Mark them as you go — the mark is the feedback for the knowledge base.</p>
+      <div className={s.blockHead}>
+        <h2 className="caps">Suggested steps</h2>
+        <LoopBadge stage="signal">every mark is a signal → the basket</LoopBadge>
+      </div>
+      <p className="faint">
+        Mark them as you go. All done confirms the procedure; “did not help” raises a correction.
+      </p>
       <ul className={s.steps}>
         {steps.map((step) => (
           <li key={step.id}>
@@ -195,7 +202,11 @@ function Event({ event, ticketId }: { event: TrailEvent; ticketId: string }) {
       : event.kind === 'evidence_added' ? 'evidence'
         : event.kind === 'state_changed' ? 'state'
           : 'agent';
-  const isAgent = event.kind === 'agent_reply';
+  const rail = event.kind === 'agent_reply' ? s.eventAgent
+    : event.kind === 'question' ? s.eventQuestion
+      : event.kind === 'evidence_added' ? s.eventEvidence
+        : event.kind === 'state_changed' ? s.eventState
+          : '';
   const note = event.payload.note;
   const evidence = event.payload.evidence;
 
@@ -204,7 +215,7 @@ function Event({ event, ticketId }: { event: TrailEvent; ticketId: string }) {
     : event.payload.text ?? '';
 
   return (
-    <article className={`${s.event} ${isAgent ? s.eventAgent : ''}`}>
+    <article className={`${s.event} ${rail}`}>
       <div className={s.eventMeta}>
         <span className="mono faint">{clock(event.at)}</span>
         <span className="faint">{label}</span>
@@ -265,7 +276,12 @@ function ShortPath({ ticket }: { ticket: Ticket }) {
 
   return (
     <div className={s.shortPath}>
-      <span>{offer.text}</span>
+      <span className={s.shortPathText}>
+        <span>{offer.text}</span>
+        <LoopBadge stage="review">
+          it fills the slots and opens the review — it does not close the ticket
+        </LoopBadge>
+      </span>
       <Button variant="solid" onClick={() => closeAsLastTime(ticket.id)}>Close as last time</Button>
     </div>
   );
@@ -302,10 +318,13 @@ function Composer({ ticket }: { ticket: Ticket }) {
           submit(e.metaKey || e.ctrlKey ? 'question' : e.shiftKey ? 'evidence' : 'note');
         }}
       />
-      <p className="faint">
-        Enter — a note, the agent stays silent. Ctrl/Cmd + Enter — a question to the agent.
-        Shift + Enter — evidence.
-      </p>
+      <div className={s.blockHead}>
+        <p className="faint">
+          Enter — a note, the agent stays silent. Ctrl/Cmd + Enter — a question to the agent.
+          Shift + Enter — evidence.
+        </p>
+        <LoopBadge stage="signal">stays on the ticket until you accept it at closure</LoopBadge>
+      </div>
     </div>
   );
 }

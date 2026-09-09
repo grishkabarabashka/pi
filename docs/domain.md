@@ -62,6 +62,7 @@ A mirror of an incident or a universal request. It has no content of its own bey
 | `assignee` | string? | SN | |
 | `state` | TicketState | SN + ours | see below |
 | `openedAt` | datetime | SN | |
+| `closedAt` | datetime? | SN | `closed_at`. Needed to say "closed today" honestly: opening time is a different fact |
 | `bucket` | BucketId? | ours | attention strip |
 | `tags` | TagId[] | ours | |
 | `knowledgeMatch` | `strong` \| `weak` \| `stale` \| `none` | derived | for the list row |
