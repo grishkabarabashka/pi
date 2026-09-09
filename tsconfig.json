@@ -17,5 +17,5 @@
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"], "~fixtures/*": ["fixtures/*"] }
   },
-  "include": ["src", "fixtures", "vite.config.ts"]
+  "include": ["src", "fixtures", "docs/canvas", "vite.config.ts"]
 }

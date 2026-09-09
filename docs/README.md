@@ -20,6 +20,7 @@ Everything else in this folder is detail hanging off it.
 | [`servicenow.md`](servicenow.md) | The adapter contract, tables, the write-back and conflicts, fixtures | While touching the adapter |
 | [`agent.md`](agent.md) | Model call sites, what is blocked while they run (nothing), behaviour when the model is down, target times | While touching anything asynchronous |
 | [`roadmap.md`](roadmap.md) | The waves, the risks, what blocks what | When planning |
+| [`canvas/`](canvas/) | The same loop drawn: four frames as a React component | When explaining it to someone, or checking your own picture of it |
 
 Screens: [`main`](screens/main.md) · [`workspace`](screens/workspace.md) ·
 [`closure`](screens/closure.md) · [`queue`](screens/queue.md) ·
