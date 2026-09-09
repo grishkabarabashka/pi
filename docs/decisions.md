@@ -191,21 +191,30 @@ containing a diagram is opened.
 
 ---
 
-## D20. Every action says which part of the loop it feeds
+## D20. The loop is named on the controls — for the demo, not for the shift
 
-A strip in the header names the link of the loop the screen is on — hint, signals, basket, review,
-master, rebuild — and the controls that raise or dispatch something carry a one-line label saying
-where the press lands: "every mark is a signal → the basket", "the record is written first,
-publication follows", "the observations section, apart from the canon".
+A strip in the header names the link of the loop the screen is on — hint, signals, basket,
+review, master, rebuild — and a control that raises or dispatches something carries a small
+marker beside it. Pressing or hovering the marker opens one sentence above the interface: where
+this press lands. "Every mark is a signal, it goes into the basket." "The record is written
+first, publication follows." "The observations section, apart from the canon."
 
-**Why.** The loop is the whole idea, and it was invisible in the interface: a person could press
-every control on the screen without ever learning that a step mark is what keeps the knowledge base
-alive. A person who can see that presses differently — and this is the cheapest possible way to say
-it, because the label sits on the control that does it rather than in an onboarding tour.
+**This is scaffolding of the mockup, like the shelf in D19, and it comes out before a pilot.**
+It is not a proposal for the working interface, and it does not reopen the rule that nothing
+pops up over the work: that rule governs the product, and this is a device for showing the
+product to people who have never seen the loop.
 
-**Constraint.** These are annotations, not instructions or interruptions: no modal, no toast,
-nothing that appears over the work, and no number that cannot be checked (I7). A label states the
-destination the code actually dispatches to, so it cannot drift into decoration.
+**Why.** The loop is the whole idea, and it was invisible: a person could press every control
+on the screen without ever learning that a step mark is what keeps the knowledge base alive.
+In a demo that has to be said out loud, and saying it on the control that does it beats saying
+it in a tour nobody reads.
 
-**Rejected.** A tour or a help overlay — it is read once, by nobody. A permanent diagram in the
-interface — the loop drawn is a document, and it lives at `/docs/canvas/`.
+**Constraint.** Nothing appears unbidden. The marker is inline and small; the sentence opens
+only on hover, focus or a press, is never modal, never takes focus, and leaves the work
+underneath live. A label states the destination the code actually dispatches to, so it cannot
+drift into decoration (I7).
+
+**Rejected.** Inline captions under every control — they were read as part of the interface
+and made the screen look like a tutorial. A tour or a help overlay — read once, by nobody.
+A permanent diagram inside the interface — the loop drawn is a document, and it is read in the
+Concept view.

@@ -1,4 +1,4 @@
-/* The loop strip and the per-action badges. Colours carry the same meaning as everywhere
+/* The loop strip and the per-action markers. Colours carry the same meaning as everywhere
    else: teal is confirmed knowledge, violet is ours, grey is not yet weighed, amber waits
    for a person. */
 
@@ -57,26 +57,91 @@
   .rail { display: none; }
 }
 
-/* ---- the badge on an action ---- */
+/* ---- the marker on an action: small, and clearly a thing you can ask ---- */
 
-.badge {
+.marker {
   display: inline-flex;
   align-items: center;
   gap: calc(var(--u) * 1.25);
-  font-size: 11px;
-  color: var(--text-muted);
+  padding: 1px calc(var(--u) * 1.5) 1px calc(var(--u));
+  border: 1px dashed var(--stage-line);
+  border-radius: 100px;
+  background: var(--stage-tint);
+  color: var(--stage-text);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
+  transition: background var(--t-fast), border-color var(--t-fast);
+  vertical-align: middle;
 }
 
-.badge .node {
-  width: 5px;
-  height: 5px;
-  background: var(--stage);
+.marker:hover,
+.marker[data-open] {
+  border-style: solid;
+  border-color: var(--stage);
+  background: var(--stage-tint-strong);
 }
 
-.badge[data-stage='hint'] { --stage: var(--agent); }
-.badge[data-stage='signal'] { --stage: var(--strong); }
-.badge[data-stage='basket'] { --stage: var(--weak); }
-.badge[data-stage='review'] { --stage: var(--stale); }
-.badge[data-stage='master'] { --stage: var(--strong); }
-.badge[data-stage='rebuild'] { --stage: var(--agent); }
+.marker .node { width: 5px; height: 5px; background: var(--stage); }
+
+.markerLabel { line-height: 1.4; }
+
+/* ---- the sentence, above everything, only while it is asked for ---- */
+
+.pop {
+  position: fixed;
+  z-index: 50;
+  transform: translate(-50%, -100%);
+  width: 268px;
+  padding: calc(var(--u) * 2.5) calc(var(--u) * 3);
+  background: var(--surface);
+  border: 1px solid var(--stage);
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 12px 32px rgb(0 0 0 / 14%);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u));
+  pointer-events: none;
+}
+
+/* Opened below the marker when there was no room above it. */
+.pop:not([data-above]) { transform: translate(-50%, 0); }
+
+.popStage {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.25);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stage-text);
+}
+
+.popStage .node { background: var(--stage); }
+
+.popText { font-size: 12.5px; line-height: 1.45; color: var(--text); }
+
+.popWhat {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  padding-top: calc(var(--u));
+  border-top: 1px solid var(--line);
+}
+
+/* One place where a stage picks up its colour, used by both the marker and the sentence. */
+.marker[data-stage='hint'], .pop[data-stage='hint'] { --stage: var(--agent); }
+.marker[data-stage='signal'], .pop[data-stage='signal'] { --stage: var(--strong); }
+.marker[data-stage='basket'], .pop[data-stage='basket'] { --stage: var(--weak); }
+.marker[data-stage='review'], .pop[data-stage='review'] { --stage: var(--stale); }
+.marker[data-stage='master'], .pop[data-stage='master'] { --stage: var(--strong); }
+.marker[data-stage='rebuild'], .pop[data-stage='rebuild'] { --stage: var(--agent); }
+
+.marker, .pop {
+  --stage-line: color-mix(in srgb, var(--stage) 40%, transparent);
+  --stage-tint: color-mix(in srgb, var(--stage) 8%, transparent);
+  --stage-tint-strong: color-mix(in srgb, var(--stage) 16%, transparent);
+  --stage-text: color-mix(in srgb, var(--stage) 75%, var(--text));
+}
