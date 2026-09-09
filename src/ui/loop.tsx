@@ -34,6 +34,7 @@ const stageOf = (id: LoopStage) => loopStages.find((x) => x.id === id)!;
 export function LoopRail({ current }: { current: LoopStage }) {
   return (
     <div className={s.rail} title="Where in the knowledge loop this screen sits">
+      <span>Where we are in knowledge loop:  &nbsp;</span>
       {loopStages.map((stage, i) => (
         <span
           key={stage.id}
