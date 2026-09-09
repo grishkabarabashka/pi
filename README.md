@@ -5,6 +5,11 @@ after-closure screen, plus the general queue and the knowledge projections.
 The data comes from `FixtureAdapter`. `LiveAdapter` is not written: it is blocked by questions
 Q1–Q5 in `docs/open-questions.md`.
 
+**The idea, and why the interface is shaped this way: [`docs/concept.md`](docs/concept.md).** It is
+the one document that carries the whole picture — the knowledge cycle, the signals the work produces
+without anyone writing, the cybernetics of the screen. The map of the rest of the documentation is
+[`docs/README.md`](docs/README.md).
+
 Documentation and code are in English. The label mapping from the earlier Russian documents is
 И → I (invariants), Р → D (decisions), В → Q (open questions); the numbering is unchanged.
 

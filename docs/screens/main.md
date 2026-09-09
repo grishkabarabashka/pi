@@ -70,7 +70,7 @@ Only what someone marked by hand ends up here. It is neither a queue nor a dashb
 
 A single line: the name, then for each bucket a dot, a label and a counter. The dot of a bucket with `emphasis: swarm` pulses when the counter is above zero. On the right, the total number marked and the toggle.
 
-There is nothing to read — this is peripheral vision (see `agent.md`, the section on the periphery). Nothing pops up over the work.
+There is nothing to read — this is peripheral vision (see `../agent.md`, the section on the periphery). Nothing pops up over the work.
 
 ### Expanded state
 

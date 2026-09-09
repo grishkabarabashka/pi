@@ -38,9 +38,9 @@ The section heading states its purpose directly: mark them as you go, this is th
 
 Each step is a button that cycles the state: `open → done → failed → open`. The colour of the bar on the left and the sign change together. A step in `failed` is struck through and labelled "did not help".
 
-The transition into `failed` immediately adds a proposal of kind `correction` to the basket. Its strength follows the basis strength table in `agent.md`: with evidence attached to the ticket it is `strong` and changes the canonical text, without evidence it is `weak` and goes into the observations. Pasting evidence afterwards raises the strength of the corrections already in the basket.
+The transition into `failed` immediately adds a proposal of kind `correction` to the basket. Its strength follows the basis strength table in `../agent.md`: with evidence attached to the ticket it is `strong` and changes the canonical text, without evidence it is `weak` and goes into the observations. Pasting evidence afterwards raises the strength of the corrections already in the basket.
 
-(Earlier editions of this file said `strength: strong` unconditionally, which contradicted `agent.md`. The table in `agent.md` wins: a mark without evidence is one person's word, and one person's word does not rewrite verified text.)
+(Earlier editions of this file said `strength: strong` unconditionally, which contradicted `../agent.md`. The table in `../agent.md` wins: a mark without evidence is one person's word, and one person's word does not rewrite verified text.)
 
 ### Changes nearby
 
@@ -143,7 +143,7 @@ Evidence is shown in the feed in a monospaced block, collapsed to five lines wit
 
 **A link instead of a copy.** If what is pasted is recognised as a URL, only the link is stored, with the time window preserved. A permanent link to a dashboard is almost as useful as the data and removes the data classification question (concept 7.3).
 
-Evidence lives on the ticket and never travels into an article by itself (I4). It strengthens the basis: a `correction` raised by a `failed` step mark on a ticket that has evidence gets `strength: strong` with the basis naming that evidence; without evidence the same mark yields `weak` (see the basis strength table in `agent.md`).
+Evidence lives on the ticket and never travels into an article by itself (I4). It strengthens the basis: a `correction` raised by a `failed` step mark on a ticket that has evidence gets `strength: strong` with the basis naming that evidence; without evidence the same mark yields `weak` (see the basis strength table in `../agent.md`).
 
 ---
 
@@ -156,7 +156,7 @@ Available only when both conditions hold at once (concept 6.3, D13, D17):
 
 Then a single line appears above the input field: what was done last time, on how many of how many occurrences, and one button — **"Close as last time"**. It fills the slots from the history and the step marks and takes the person to the closure screen with everything already assembled. It does not close the ticket itself: the person still sees the composition and presses "Accept and close" (`closure.md`).
 
-With a weak match, with a diverged course, or with no signature the line does not appear at all. There is nothing to offer, and an offer would turn confirmation into a formality (`agent.md`, "Protection against formal confirmation").
+With a weak match, with a diverged course, or with no signature the line does not appear at all. There is nothing to offer, and an offer would turn confirmation into a formality (`../agent.md`, "Protection against formal confirmation").
 
 ---
 
@@ -170,13 +170,13 @@ By default the agent is silent. It has the right to insert one remark on the eve
 | A suggested article has not been confirmed for more than 90 days and its steps are being marked | "This article has not been confirmed for N months. If it worked, confirm it at closure." | "Confirm" → a `confirmation` proposal; "Not now" |
 | The alert history is stable and the course of the resolution matched it | No remark: the same fact is already stated by the short-path line in H, and saying it twice is noise | — |
 
-The remark arrives asynchronously and never blocks anything. If the model is unavailable, the remark simply does not appear — the step mark raises its proposal anyway, because it is a structural signal (`agent.md`).
+The remark arrives asynchronously and never blocks anything. If the model is unavailable, the remark simply does not appear — the step mark raises its proposal anyway, because it is a structural signal (`../agent.md`).
 
 ---
 
 ## J. Trail events on the sources
 
-The sources panel emits two events, and they are the only source of the article application telemetry and of the `co_occurrence` edges (`domain.md`, EdgeKind):
+The sources panel emits two events, and they are the only source of the article application telemetry and of the `co_occurrence` edges (`../domain.md`, EdgeKind):
 
 - `article_suggested` — once per article, when the hint arrives
 - `article_opened` — when the article title is pressed and the projection opens

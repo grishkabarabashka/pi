@@ -6,6 +6,43 @@ Source notation: **SN** — comes from ServiceNow, **ours** — exists only on o
 
 ---
 
+## The whole map
+
+```mermaid
+erDiagram
+    TICKET ||--|| WORK_TRAIL : "accumulates"
+    WORK_TRAIL ||--o{ TRAIL_EVENT : "contains"
+    TRAIL_EVENT ||--o| NOTE_PAIR : "raw and polished"
+    TICKET ||--o{ SUGGESTION : "receives"
+    TICKET }o--|| TICKET_SOURCE : "alert or user"
+    TICKET ||--o{ BOARD_TAG : "marked"
+    TICKET }o--o| BUCKET : "on the attention strip"
+    TICKET ||--o{ STEP_INSTANCE : "executes"
+    STEP_INSTANCE ||--o| DEVIATION : "raises"
+    TICKET ||--o{ PROPOSAL : "change basket"
+    TICKET ||--o| CLOSURE : "is closed by"
+    CLOSURE ||--o{ SLOT : "resolution note slots"
+    PROPOSAL }o--|| ANCHOR : "addresses"
+    ANCHOR }o--|| ARTICLE : "points to"
+    ARTICLE ||--o{ ARTICLE_VERSION : "versions"
+    ARTICLE ||--|| TELEMETRY : "has"
+    ARTICLE ||--o{ PROJECTION_BLOCK : "is projected into"
+    PROJECTION_BLOCK }o--o| ANCHOR : "carries"
+    ARTICLE ||--o{ EDGE : "is linked"
+    ARTICLE ||--o{ CONFIRMATION : "is confirmed by"
+    ALERT_SIGNATURE ||--o{ TICKET : "groups repeats"
+    APPLICATION ||--o{ ARTICLE : "owns"
+    APPLICATION }o--|| OWNER : "is assigned to"
+    TEAM ||--o{ BUCKET : "configures"
+```
+
+The typing of `TRAIL_EVENT` is deliberately general rather than tailored to closure: the same
+journal has to be able to yield a shift handover brief later. `ALERT_SIGNATURE` is what makes the
+occurrence history and the short path possible at all (D17). `BUCKET` and `BOARD_TAG` live only on
+our side and are a property of the team (D6).
+
+---
+
 ## Ticket
 
 A mirror of an incident or a universal request. It has no content of its own beyond our telemetry and marks.

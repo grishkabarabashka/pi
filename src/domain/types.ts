@@ -186,7 +186,7 @@ export interface ClosurePackage {
   articlesUsed: { title: string; version: string; url: string }[];
 }
 
-// --- Publication and telemetry. See docs/domain.md and docs/closure.md ---
+// --- Publication and telemetry. See docs/domain.md and docs/screens/closure.md ---
 
 export type PublicationTarget = 'article' | 'telemetry';
 export type PublicationState = 'sending' | 'published' | 'conflict' | 'failed';

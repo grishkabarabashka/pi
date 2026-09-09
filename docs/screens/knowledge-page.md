@@ -1,6 +1,6 @@
 # Screen: knowledge page
 
-The projection of an article. Read here, edited through proposals raised on a ticket. Third to fourth wave, but a link to this file exists in `domain.md`, so the specification is fixed now.
+The projection of an article. Read here, edited through proposals raised on a ticket. Third to fourth wave, but a link to this file exists in `../domain.md`, so the specification is fixed now.
 
 ## Content
 

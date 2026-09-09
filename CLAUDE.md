@@ -8,14 +8,17 @@ The interface of a knowledge feedback loop for application support engineers. An
 
 ## Reading order
 
-1. `docs/invariants.md` — **read first**. Rules that must not be broken
-2. `docs/domain.md` — entities, fields, states
-3. `docs/main.md`, `docs/workspace.md`, `docs/closure.md`, `docs/queue.md`, `docs/knowledge-page.md` — screen specifications with acceptance criteria
-4. `docs/servicenow.md` — the adapter contract
-5. `docs/agent.md` — where the model is called
-6. `docs/concept.md` — the whole "why", read it when there is disagreement about the intent
+`docs/README.md` is the map of the documentation and lists reading routes by task.
+
+1. `docs/concept.md` — **the whole idea in one document**: the knowledge cycle, the signals the work produces, the cybernetics of the interface. Read it first, and again whenever there is disagreement about intent
+2. `docs/invariants.md` — rules that must not be broken. Read before writing code
+3. `docs/domain.md` — entities, fields, states, the entity map
+4. `docs/screens/main.md`, `workspace.md`, `closure.md`, `queue.md`, `knowledge-page.md` — screen specifications with acceptance criteria
+5. `docs/servicenow.md` — the adapter contract
+6. `docs/agent.md` — where the model is called
 7. `docs/decisions.md` — what has already been decided and why
 8. `docs/open-questions.md` — what is still unknown and what it blocks
+9. `docs/roadmap.md` — the waves and the risks
 
 Label mapping from the earlier Russian documents: И → I (invariants), Р → D (decisions), В → Q (open questions). The numbering is unchanged.
 
@@ -81,9 +84,3 @@ docs/                      see above
 - Do not invent the content of an empty slot. A gap is better than invented text
 - No modal dialogs and no toasts on top of the work
 - Do not write telemetry into ServiceNow and do not keep the article body on our side as the source of truth (I6)
-
-## Mockup
-
-`reference/mockup-v3.jsx` — a clickable mockup of the first and second waves: the main screen, the attention strip, the workspace, closure, the after-closure screen. **The file is not in the repository today**; the section is kept because the concept refers to it.
-
-It is an illustration of layout and behaviour, not a model of the code. It diverges from the production requirements in three places: the styles are inline, the data is hardcoded instead of coming from the adapter, and the state is kept in components. Where the mockup diverges from the specifications in `docs/`, the specifications are right.

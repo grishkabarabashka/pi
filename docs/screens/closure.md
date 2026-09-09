@@ -122,7 +122,7 @@ If `contentHash` did not match, the article was changed in ServiceNow while the 
 - the proposal is rebuilt against the new body and is preserved
 - the after-closure screen shows this explicitly, with the article name and the reason
 
-A silent overwrite is unacceptable: that is how the work of an owner who edited the article directly gets erased (`servicenow.md`, "Conflicts").
+A silent overwrite is unacceptable: that is how the work of an owner who edited the article directly gets erased (`../servicenow.md`, "Conflicts").
 
 ### While the publication is in flight
 
