@@ -56,15 +56,14 @@ export function Header() {
           </button>
         )}
 
-        <a
+        <button
+          type="button"
           className={s.diagrams}
-          href="/docs/canvas/"
-          target="_blank"
-          rel="noreferrer"
-          title="The loop drawn: four frames on their own page"
+          onClick={() => openDoc('canvas')}
+          title="The loop drawn: four frames, next to the documents"
         >
-          Diagrams ↗
-        </a>
+          Diagrams
+        </button>
 
         <span className={s.user}>
           <span>{currentUser.name}</span>

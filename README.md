@@ -38,7 +38,7 @@ npm run dev
 | `src/screens/closure/` | The slots, the proposals, the after-closure screen |
 | `src/screens/queue/` | The team's general queue |
 | `src/screens/knowledge/` | The article projections |
-| `src/screens/docs/` | The documentation shelf: the files from `docs/` rendered in the app, and the link to the diagrams (D19) |
+| `src/screens/docs/` | The documentation shelf: the files from `docs/` rendered in the app, and `canvas/` — the loop drawn, read in the same reader (D19) |
 | `src/ui/` | Shared elements, the freshness wording, and the loop strip that names where an action lands (D20) |
 | `fixtures/` | The scenarios from `docs/servicenow.md` |
 

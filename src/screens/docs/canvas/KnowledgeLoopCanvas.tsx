@@ -6,7 +6,8 @@
  * Self-contained on purpose: no imports beyond React, no shared stylesheet, no store.
  * Drop `<KnowledgeLoopCanvas />` anywhere, or embed one frame — every frame is exported.
  *
- * Open it standalone:  npm run dev  →  http://localhost:5173/docs/canvas/
+ * It is read inside the mockup, in the Concept view alongside the documents. The standalone
+ * page at `docs/canvas/` renders the same component on its own canvas ground.
  *
  * This is documentation, not product code. It is not part of the application and does not
  * import from `src/`. When a diagram and `concept.md` disagree, the document is right.
@@ -91,6 +92,14 @@ const css = `
 }
 
 .klc .page { max-width: 1240px; margin: 0 auto; padding: 28px 24px 72px; }
+
+/* Inside the documentation reader the page already provides the ground and the padding,
+   so the canvas drops its own and reads as one more document. */
+.klc-embed { background: none; }
+.klc-embed .page { max-width: none; margin: 0; padding: 0; }
+.klc-embed h1 { font-size: 24px; letter-spacing: -0.02em; }
+.klc-embed .deck { font-size: 15px; }
+.klc-embed .legend { margin-top: 24px; }
 
 .klc .bar {
   display: flex; align-items: center; gap: 12px;
@@ -701,20 +710,22 @@ export function SignalsFrame() {
 
 /* -------------------------------------------------------------- the canvas */
 
-export function KnowledgeLoopCanvas() {
+export function KnowledgeLoopCanvas({ embedded = false }: { embedded?: boolean } = {}) {
   return (
-    <div className="klc">
+    <div className={embedded ? 'klc klc-embed' : 'klc'}>
       <style>{css}</style>
       <div className="page">
-        <div className="bar">
-          <span className="mark" aria-hidden="true" />
-          <span className="file">
-            knowledge-loop<span>.canvas</span>
-          </span>
-          <span className="spacer" />
-          <span className="chip hide-sm">source: docs/concept.md</span>
-          <span className="chip">4 frames</span>
-        </div>
+        {!embedded && (
+          <div className="bar">
+            <span className="mark" aria-hidden="true" />
+            <span className="file">
+              knowledge-loop<span>.canvas</span>
+            </span>
+            <span className="spacer" />
+            <span className="chip hide-sm">source: docs/concept.md</span>
+            <span className="chip">4 frames</span>
+          </div>
+        )}
 
         <h1>The knowledge loop</h1>
         <p className="deck">

@@ -41,10 +41,12 @@
 .diagrams {
   font-size: 12px;
   color: var(--agent);
-  border-bottom-color: color-mix(in srgb, var(--agent) 35%, transparent);
   white-space: nowrap;
+  padding: calc(var(--u) * 0.75) calc(var(--u) * 2);
+  border: 1px solid color-mix(in srgb, var(--agent) 35%, transparent);
+  border-radius: var(--radius);
 }
-.diagrams:hover { border-bottom-color: var(--agent); }
+.diagrams:hover { background: var(--tint-agent); border-color: var(--agent); }
 
 .resume {
   display: flex;

@@ -8,6 +8,7 @@
 
 import { useEffect, useMemo, useRef, type MouseEvent } from 'react';
 import { useApp } from '@/store/app';
+import { KnowledgeLoopCanvas } from './canvas/KnowledgeLoopCanvas';
 import { drawGraphs, renderMarkdown } from './markdown';
 import s from './Docs.module.css';
 
@@ -21,11 +22,15 @@ const files = import.meta.glob('/docs/**/*.md', {
 interface Entry { path: string; label: string; note: string }
 interface Group { title: string; entries: Entry[] }
 
+/** The diagrams are not a file: they are drawn, and they are read here like any document. */
+export const canvasPath = 'canvas';
+
 const groups: Group[] = [
   {
     title: 'Start here',
     entries: [
       { path: '/docs/concept.md', label: 'Concept', note: 'the whole idea in one document' },
+      { path: canvasPath, label: 'The loop, drawn', note: 'four frames: the loop, its clocks, a unit of knowledge, the signals' },
       { path: '/docs/README.md', label: 'Map', note: 'what is where, and reading routes' },
     ],
   },
@@ -65,14 +70,15 @@ export function Docs() {
   const openDoc = useApp((st) => st.openDoc);
   const body = useRef<HTMLDivElement>(null);
 
-  const source = files[path];
+  const drawn = path === canvasPath;
+  const source = drawn ? undefined : files[path];
   // Our own documents, bundled from the repository — there is no user input in this string.
   const html = useMemo(() => (source ? renderMarkdown(source) : ''), [source]);
 
   useEffect(() => {
     body.current?.scrollTo({ top: 0 });
     if (body.current) void drawGraphs(body.current);
-  }, [html]);
+  }, [html, path]);
 
   /** A link from one document to another opens in the reader; everything else behaves normally. */
   const onClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -85,18 +91,13 @@ export function Docs() {
       openDoc(target);
     } else if (target.startsWith('/docs/canvas')) {
       e.preventDefault();
-      window.open('/docs/canvas/', '_blank', 'noreferrer');
+      openDoc(canvasPath);
     }
   };
 
   return (
     <div className={s.screen}>
       <nav className={s.list}>
-        <a className={s.canvas} href="/docs/canvas/" target="_blank" rel="noreferrer">
-          <span className={s.canvasTitle}>The loop, drawn ↗</span>
-          <span className="faint">four frames: the loop, its two clocks, the life of a unit, the signals</span>
-        </a>
-
         {groups.map((group) => (
           <section key={group.title} className={s.group}>
             <span className="caps">{group.title}</span>
@@ -121,7 +122,9 @@ export function Docs() {
       </nav>
 
       <div className={s.reader} ref={body}>
-        {source ? (
+        {drawn ? (
+          <KnowledgeLoopCanvas embedded />
+        ) : source ? (
           <article className={s.doc} onClick={onClick} dangerouslySetInnerHTML={{ __html: html }} />
         ) : (
           <p className="faint">This document is not bundled: {path}</p>

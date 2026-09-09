@@ -7,10 +7,15 @@ Four frames of the machine described in [`../concept.md`](../concept.md):
 3. **life of a unit** — white spot → observation → canon → stale → deprecated, with what pays for each transition
 4. **signals** — the gestures on a ticket, what each one raises, and where it lands
 
-## Opening it
+## Where it is read
 
-The mockup links here: the header carries a **Diagrams ↗** link, and the **Concept** view opens
-with the same page at the top of the document list (D19).
+Inside the mockup, in the **Concept** view: "The loop, drawn" sits in the document list next to
+`concept.md`, and the header carries a **Diagrams** button that opens it (D19). The frames render
+in the same reader as the markdown, on the same ground.
+
+The component itself lives in [`src/screens/docs/canvas/KnowledgeLoopCanvas.tsx`](../../src/screens/docs/canvas/KnowledgeLoopCanvas.tsx).
+This folder keeps a standalone page that renders the same component on its own canvas ground, for
+sharing the drawings without the application around them:
 
 ```sh
 npm run dev     # then http://localhost:5173/docs/canvas/
@@ -22,13 +27,16 @@ npm run build   # emits dist/docs/canvas/index.html alongside the application
 Every frame is exported on its own and carries no props, no store and no imports beyond React:
 
 ```tsx
-import { LifecycleFrame } from '../../docs/canvas/KnowledgeLoopCanvas';
+import { LifecycleFrame } from '@/screens/docs/canvas/KnowledgeLoopCanvas';
 ```
+
+`<KnowledgeLoopCanvas embedded />` drops the canvas ground and the file bar, which is how the
+documentation reader shows it.
 
 The styles live in a `<style>` tag inside the component, scoped under `.klc`, so a frame can be
 dropped into any page without colliding with the application's CSS. The three faces come from
-Google Fonts and are linked in `index.html`; without them the page falls back to the system stack
-and still reads correctly.
+Google Fonts and are linked in the standalone `index.html`; inside the application they fall back
+to the interface stack, which is the intended look there.
 
 ## What this is not
 

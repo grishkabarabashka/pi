@@ -13,14 +13,14 @@ Everything else in this folder is detail hanging off it.
 |---|---|---|
 | [`concept.md`](concept.md) | The idea, the knowledge cycle, the signals, the cybernetics of the interface | First. Also whenever there is disagreement about intent |
 | [`invariants.md`](invariants.md) | I1–I7: rules whose violation means the wrong thing was built, each with how it breaks unnoticed and how to check it | Before writing code. Especially I2 |
-| [`decisions.md`](decisions.md) | D1–D18: what was decided, why, and what was rejected | When you are about to reopen a settled question |
+| [`decisions.md`](decisions.md) | D1–D20: what was decided, why, and what was rejected | When you are about to reopen a settled question |
 | [`open-questions.md`](open-questions.md) | Q1–Q17, each marked with what it blocks | When something cannot be decided from inside the team |
 | [`domain.md`](domain.md) | Entities, fields, state transitions, the entity diagram | While implementing. Fields are not invented in code |
 | [`screens/`](screens/) | Layout and acceptance criteria per screen | While building a screen |
 | [`servicenow.md`](servicenow.md) | The adapter contract, tables, the write-back and conflicts, fixtures | While touching the adapter |
 | [`agent.md`](agent.md) | Model call sites, what is blocked while they run (nothing), behaviour when the model is down, target times | While touching anything asynchronous |
 | [`roadmap.md`](roadmap.md) | The waves, the risks, what blocks what | When planning |
-| [`canvas/`](canvas/) | The same loop drawn: four frames as a React component | When explaining it to someone, or checking your own picture of it |
+| [`canvas/`](canvas/) | The same loop drawn: four frames, read in the mockup's Concept view or on their own page | When explaining it to someone, or checking your own picture of it |
 
 Screens: [`main`](screens/main.md) · [`workspace`](screens/workspace.md) ·
 [`closure`](screens/closure.md) · [`queue`](screens/queue.md) ·

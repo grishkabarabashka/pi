@@ -2,7 +2,7 @@
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { KnowledgeLoopCanvas } from './KnowledgeLoopCanvas';
+import { KnowledgeLoopCanvas } from '@/screens/docs/canvas/KnowledgeLoopCanvas';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

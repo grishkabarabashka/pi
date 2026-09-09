@@ -15,21 +15,6 @@
   gap: calc(var(--u) * 4);
 }
 
-.canvas {
-  margin: 0 calc(var(--u) * 3);
-  padding: calc(var(--u) * 2.5) calc(var(--u) * 3);
-  border: 1px solid var(--agent);
-  border-radius: var(--radius);
-  background: var(--tint-agent);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.canvas:hover { background: color-mix(in srgb, var(--agent) 18%, transparent); }
-
-.canvasTitle { font-weight: 550; }
-
 .group { display: flex; flex-direction: column; }
 .group > .caps { padding: 0 calc(var(--u) * 3) calc(var(--u) * 1.5); }
 
@@ -62,6 +47,9 @@
   background: var(--surface);
   padding: calc(var(--u) * 8) calc(var(--u) * 10) calc(var(--u) * 20);
 }
+
+/* The drawn frames sit in the same reader as the documents and inherit its ground. */
+.reader :global(.klc) { color: var(--text); }
 
 /* The full width of the reader. These documents are carried by wide tables and diagrams as
    much as by prose, and a 76ch column left both of them cramped in half a screen. Running
