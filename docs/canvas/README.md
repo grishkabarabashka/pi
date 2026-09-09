@@ -10,8 +10,7 @@ Four frames of the machine described in [`../concept.md`](../concept.md):
 ## Where it is read
 
 Inside the mockup, in the **Concept** view: "The loop, drawn" sits in the document list next to
-`concept.md`, and the header carries a **Diagrams** button that opens it (D19). The frames render
-in the same reader as the markdown, on the same ground.
+`concept.md` (D19). The frames render in the same reader as the markdown, on the same ground.
 
 The component itself lives in [`src/screens/docs/canvas/KnowledgeLoopCanvas.tsx`](../../src/screens/docs/canvas/KnowledgeLoopCanvas.tsx).
 This folder keeps a standalone page that renders the same component on its own canvas ground, for

@@ -56,15 +56,6 @@ export function Header() {
           </button>
         )}
 
-        <button
-          type="button"
-          className={s.diagrams}
-          onClick={() => openDoc('canvas')}
-          title="The loop drawn: four frames, next to the documents"
-        >
-          Diagrams
-        </button>
-
         <span className={s.user}>
           <span>{currentUser.name}</span>
           <span className="faint"> · {currentUser.region}</span>
