@@ -6,7 +6,7 @@ The full view of the team's queue: what is not taken, what is taken and by whom.
 
 The list on the main screen shows my tickets and the tail of the queue — it is about the work. The queue shows the team's load: who is busy with what, where things have piled up, what is hanging without an owner. They must not be merged: in the first case what matters is my next step, in the second the distribution.
 
-This is not the owner dashboard and not a report. There are no charts and no aggregates over people (D13 is not about people metrics): the "who has it" column exists so that one can get a contact or see that the ticket is already being worked on.
+This is not the owner dashboard and not a report. There are no charts and no aggregates over people (`../concept.md` §10 — no counters, no ratings): the "who has it" column exists so that one can get a contact or see that the ticket is already being worked on.
 
 ## Content
 

@@ -282,20 +282,21 @@ Each carries a meaning, and each has exactly one destination.
 
 | Gesture | Cost | What it means | Produces | Strength | Where it goes |
 |---|---|---|---|---|---|
-| A step marked **done** | one press | This step is real and it worked | `confirmation` | — | Telemetry: `useCount`, `lastConfirmedAt` |
-| **All** steps done, no failures, on a recurring alert with a stable history | nothing extra | The procedure is true today | `confirmation` | strong | Telemetry; unlocks one-press closing (D17) |
+| A step marked **done** | one press | This step is real and it worked | No proposal on its own — it is the input to the row below | — | The work trail |
+| **All** steps marked done, none failed | nothing extra | The procedure as written still works | `confirmation`, raised without a separate press | strong | Telemetry: a Confirmation, `lastConfirmedAt`. The text is untouched |
 | A step marked **did not help** | one press | The canonical text is wrong here | `correction` | weak on its own | The observations section |
-| The same, with evidence pasted beside it | a paste | The same, now checkable | `correction` | **strong** | The canonical text changes |
-| **Not applicable** on a suggested article | one press | The matching is wrong; the content is fine | `not_applicable` | — | Matching telemetry only. **Never touches the article** |
-| An article suggested, opened, then not used | free | Weak relevance | a ranking signal | — | Telemetry |
+| The same, with evidence on the ticket | a paste | The same, now checkable | `correction` | **strong** | The canonical text changes |
+| **Not applicable** on a suggested article | one press | The matching is wrong; the content is fine | `not_applicable` | weak | Matching telemetry only. **Never touches the article** |
+| An article opened from the sources panel | one press | It was consulted | An `article_opened` trail event | — | Telemetry `useCount`, and `co_occurrence` edges — the graph earns itself |
 | A remark in the dialogue during the work | voluntary typing | Something new was observed | `observation` | weak | Observations, awaiting promotion |
-| A recurring alert resolved as the previous N were | nothing | A stable storyline | `confirmation` over N cases | strong when N ≥ 3 | The canonical text |
+| A recurring alert whose course matched a stable history | nothing | The stored storyline is still true | The short path — "close as last time" (D17) | strong once the history covers three or more cases | A confirmation at closure, one press instead of a review |
 | A ticket closed with **no** match at all | nothing | The knowledge does not exist yet | a white spot | — | Owner dashboard, slow loop |
 | A bucket or a tag on the attention strip | one press | An attention state, not knowledge | — | — | Our side only, never ServiceNow |
 
 The rule behind the strength column, stated once: **a proposal changes canonical text only when it
-rests on a structural fact plus evidence.** Anything weaker is published as an observation and waits
-for a second, independent case (`domain.md`, "the rule of basis strength").
+rests on a structural fact plus evidence** — or on a repeat history long enough to speak for itself.
+Anything weaker is published as an observation and waits for a second, independent case
+(`domain.md`, "the rule of basis strength"; the full table in `agent.md`).
 
 ### What we deliberately never ask
 
@@ -335,8 +336,8 @@ sequenceDiagram
     S-->>E: hint — past occurrences · articles · similar tickets
     Note over S,Ag: the hint is asynchronous; the ticket is workable without it
 
-    E->>S: marks step 1 done
-    S->>B: confirmation
+    E->>S: marks steps 1 and 2 done
+    Note over S,B: all steps done and none failed would file a confirmation by itself
     E->>S: marks step 3 "did not help"
     S->>B: correction (weak)
     E->>S: pastes the command output

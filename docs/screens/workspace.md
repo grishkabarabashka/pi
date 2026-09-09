@@ -40,7 +40,7 @@ Each step is a button that cycles the state: `open → done → failed → open`
 
 The transition into `failed` immediately adds a proposal of kind `correction` to the basket. Its strength follows the basis strength table in `../agent.md`: with evidence attached to the ticket it is `strong` and changes the canonical text, without evidence it is `weak` and goes into the observations. Pasting evidence afterwards raises the strength of the corrections already in the basket.
 
-(Earlier editions of this file said `strength: strong` unconditionally, which contradicted `../agent.md`. The table in `../agent.md` wins: a mark without evidence is one person's word, and one person's word does not rewrite verified text.)
+A mark without evidence is one person's word, and one person's word does not rewrite verified text. Do not make the correction `strong` unconditionally: `../agent.md` is the single home of that rule.
 
 ### Changes nearby
 
@@ -95,7 +95,7 @@ For `origin: user` the articles section comes first; instead of the occurrence h
 
 ### Not applicable
 
-Each article card carries one more control: **"not about our case"**. It is the only signal that corrects the matching rather than the content (concept 6.1).
+Each article card carries one more control: **"not about our case"**. It is the only signal that corrects the matching rather than the content (`../concept.md` §5, the signals table).
 
 Pressing it puts a `not_applicable` proposal into the basket with `strength: weak` and the basis "marked as not matching on this ticket". The card stays in place but is muted, so that the person sees what they discarded and can undo it. Pressing again withdraws the proposal and restores the card.
 
@@ -141,7 +141,7 @@ Command output, a log fragment, a link to a monitoring dashboard. Pasting into t
 
 Evidence is shown in the feed in a monospaced block, collapsed to five lines with a "show all" control.
 
-**A link instead of a copy.** If what is pasted is recognised as a URL, only the link is stored, with the time window preserved. A permanent link to a dashboard is almost as useful as the data and removes the data classification question (concept 7.3).
+**A link instead of a copy.** If what is pasted is recognised as a URL, only the link is stored, with the time window preserved. A permanent link to a dashboard is almost as useful as the data and removes the data classification question (`../concept.md` §8).
 
 Evidence lives on the ticket and never travels into an article by itself (I4). It strengthens the basis: a `correction` raised by a `failed` step mark on a ticket that has evidence gets `strength: strong` with the basis naming that evidence; without evidence the same mark yields `weak` (see the basis strength table in `../agent.md`).
 
@@ -149,7 +149,7 @@ Evidence lives on the ticket and never travels into an article by itself (I4). I
 
 ## H. The short path for a recurring alert
 
-Available only when both conditions hold at once (concept 6.3, D13, D17):
+Available only when both conditions hold at once (`../concept.md` §6.4, D13, D17):
 
 - the ticket has an `alertSignature` and an occurrence history with a stable resolution
 - every suggested step is marked `done`, and none is `failed`

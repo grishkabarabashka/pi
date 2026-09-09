@@ -19,7 +19,7 @@ The width of B is fixed. C takes the rest and contains its own right-hand source
 
 ## B. Ticket list
 
-Three groups from top to bottom, each with a heading and a counter:
+Four groups from top to bottom, each with a heading and a counter:
 
 1. **In my work** — `state: work`
 2. **Waiting for a reply** — `state: wait`

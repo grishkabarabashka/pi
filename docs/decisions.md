@@ -34,7 +34,7 @@ Changes accumulate into the basket while the problem is being solved. The closur
 
 **Why.** A conversation at closure is recollection after the fact. Quality is lower and it takes more time.
 
-**Changed relative to the first edition of the concept.**
+**Reverses the earlier design**, in which the conversation with the agent happened at closure.
 
 ---
 
@@ -44,7 +44,7 @@ The board became a collapsible strip at the top.
 
 **Why.** The engineer lives in their own tickets. The board contains only what was marked by hand and is not a working list.
 
-**Changed relative to the second edition of the concept**, where the board was the main view.
+**Reverses the earlier design**, in which the board was the main view.
 
 ---
 
@@ -66,7 +66,7 @@ The set of buckets and tags is configurable, not a constant.
 
 **Why.** With fifteen engineers and five tickets a day, a threshold of three confirmations is unreachable for rare procedures: they are applied twice a year. The application owner is an authority and needs no quorum.
 
-**Changed relative to the first edition**, where the threshold was three.
+**Reverses an earlier threshold of three.**
 
 ---
 
