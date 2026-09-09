@@ -63,12 +63,16 @@
   padding: calc(var(--u) * 8) calc(var(--u) * 10) calc(var(--u) * 20);
 }
 
+/* The full width of the reader. These documents are carried by wide tables and diagrams as
+   much as by prose, and a 76ch column left both of them cramped in half a screen. Running
+   text keeps its own measure below. */
 .doc {
-  max-width: 76ch;
+  max-width: none;
   font-size: 14px;
   line-height: 1.65;
   color: var(--text);
 }
+
 
 .doc :global(h1) {
   font-size: 24px;
