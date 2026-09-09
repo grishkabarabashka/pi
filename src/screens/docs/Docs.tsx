@@ -78,7 +78,7 @@ export function Docs() {
   const onClick = (e: MouseEvent<HTMLDivElement>) => {
     const link = (e.target as HTMLElement).closest('a');
     const href = link?.getAttribute('href');
-    if (!href || href.startsWith('http')) return;
+    if (!href || href.startsWith('http') || href.startsWith('#')) return;
     const target = new URL(href, `file://${path}`).pathname;
     if (files[target]) {
       e.preventDefault();
